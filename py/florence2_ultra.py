@@ -12,7 +12,7 @@ from .imagefunc import *
 colormap = ['blue', 'orange', 'green', 'purple', 'brown', 'pink', 'gray', 'olive', 'cyan', 'red',
             'lime', 'indigo', 'violet', 'aqua', 'magenta', 'coral', 'gold', 'tan', 'skyblue']
 
-device = comfy.model_management.get_torch_device()
+device = torch.device('cuda', 0)
 
 fl2_model_repos = {
     "base": "microsoft/Florence-2-base",

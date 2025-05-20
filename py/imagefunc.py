@@ -1579,7 +1579,7 @@ def generate_VITMatte(image:Image, trimap:Image, local_files_only:bool=False, de
         device = torch.device('cpu')
     else:
         if torch.cuda.is_available():
-            device = torch.device('cuda')
+            device = torch.device('cuda', 0)
         else:
             log("vitmatte device is set to cuda, but not available, using cpu instead.")
             device = torch.device('cpu')

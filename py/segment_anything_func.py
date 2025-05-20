@@ -78,7 +78,7 @@ def load_sam_model(model_name):
     if 'hq' not in model_type and 'mobile' not in model_type:
         model_type = '_'.join(model_type.split('_')[:-1])
     sam = sam_model_registry[model_type](checkpoint=sam_checkpoint_path)
-    sam_device = comfy.model_management.get_torch_device()
+    sam_device = torch.device('cuda', 0)
     sam.to(device=sam_device)
     sam.eval()
     sam.model_name = model_file_name
@@ -127,7 +127,7 @@ def load_groundingdino_model(model_name):
     )
     dino.load_state_dict(local_groundingdino_clean_state_dict(
         checkpoint['model']), strict=False)
-    device = comfy.model_management.get_torch_device()
+    device = torch.device('cuda', 0)
     dino.to(device=device)
     dino.eval()
     return dino
@@ -158,7 +158,7 @@ def groundingdino_predict(
         caption = caption.strip()
         if not caption.endswith("."):
             caption = caption + "."
-        device = comfy.model_management.get_torch_device()
+        device = torch.device('cuda', 0)
         image = image.to(device)
         with torch.no_grad():
             outputs = model(image[None], captions=[caption])
@@ -223,7 +223,7 @@ def sam_segment(
     predictor.set_image(image_np_rgb)
     transformed_boxes = predictor.transform.apply_boxes_torch(
         boxes, image_np.shape[:2])
-    sam_device = comfy.model_management.get_torch_device()
+    sam_device = torch.device('cuda', 0)
     masks, _, _ = predictor.predict_torch(
         point_coords=None,
         point_labels=None,
