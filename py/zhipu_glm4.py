@@ -17,7 +17,11 @@ class LS_ZhipuImage:
 
     @classmethod
     def INPUT_TYPES(cls):
-        glm_model_list = ["glm-4v-flash", "glm-4v", "glm-4v-plus"]
+        glm_model_list = ["glm-4.5v",
+                          "glm-4.1v-thinking-flashx",
+                          "glm-4v-flash",
+                          "glm-4v",
+                          "glm-4v-plus"]
         return {"required":{
                     "image": ("IMAGE",),
                     "model": (glm_model_list,),
@@ -73,7 +77,7 @@ class LS_ZhipuText:
 
     @classmethod
     def INPUT_TYPES(cls):
-        glm_model_list = ["GLM-4-Flash", "GLM-4-FlashX", "GLM-4-Plus", "GLM-4-Long","GLM-4-Air", "GLM-4-AirX"]
+        glm_model_list = ["glm-4.5-flash", "glm-4.5", "glm-4.5-air","glm-4.5-x", "glm-4.5-airx", "GLM-4-Flash", "GLM-4-FlashX", "GLM-4-Plus", "GLM-4-Long","GLM-4-Air", "GLM-4-AirX"]
         return {"required":{
                     "model": (glm_model_list,),
                     "user_prompt": ("STRING", {"default": "where is the capital of France?", "multiline": True}),
